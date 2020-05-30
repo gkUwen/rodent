@@ -57,7 +57,7 @@ fn @cpu_index_of(value: f32, lane: f32) -> i32 {
 
 // Vectorizes an arbitrary range
 fn @vectorized_range(vector_width: i32, a: i32, b: i32, body: fn (i32, i32) -> ()) -> () {
-    if vector_width == 1 {
+    /*if vector_width == 1 {
         for i in range(a, b) {
             body(i, 1);
         }
@@ -71,5 +71,8 @@ fn @vectorized_range(vector_width: i32, a: i32, b: i32, body: fn (i32, i32) -> (
         for i in range(a + n_vec, b) {
             @@body(i, 1)
         }
+    }*/
+    for i in range(a,b){
+        body(i,1);
     }
 }

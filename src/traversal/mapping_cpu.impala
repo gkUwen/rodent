@@ -390,13 +390,13 @@ fn @cpu_traverse_hybrid( min_max: MinMax
                        , rays: fn (i32, i32) -> Ray
                        , hits: fn (i32, i32, Hit) -> ()
                        , packet_size: i32
-                       , num_packets: i32
+                       , num_rays: i32
                        , single: bool
                        , any_hit: bool
                        ) -> () {
-    for i in range(0, num_packets) {
-        for j in vectorize(packet_size) {
-            hits(i, j, cpu_traverse_hybrid_helper(rays(i, j), packet_size, min_max, bvh, single, any_hit, 1 /*root*/))
+    for i in range(0, num_rays) {
+        for j in range(packet_size) {
+            hits(i, j, cpu_traverse_hybrid_helper(rays(i, j), 1, min_max, bvh, false, any_hit, 1 /*root*/))
         }
     }
 }
