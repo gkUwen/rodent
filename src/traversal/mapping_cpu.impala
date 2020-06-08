@@ -149,7 +149,7 @@ fn @cpu_traverse_single_helper( mut ray: Ray
     let branchless = bvh.arity > 4;
 
     let mut hit = empty_hit(ray.tmax);
-
+  
     hit
 }
 
