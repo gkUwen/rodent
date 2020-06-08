@@ -39,3 +39,4 @@ src/driver/interface.h
 *.exe
 *.out
 *.app
+build/
