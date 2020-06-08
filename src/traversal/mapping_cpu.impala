@@ -187,7 +187,7 @@ fn @cpu_traverse_single_helper( mut ray: Ray
               //  };
                 // Restart the loop when no intersection is found to trigger culling
                // if likely(mask == 0) {
-                    if any_hit { continue() } else { restart() }
+                  //  if any_hit { continue() } else { restart() }
                // }
 
                 // Push intersected nodes on the stack, prefetch those
