@@ -157,7 +157,7 @@ fn @make_cpu_hit8(hits: &mut [Hit8], any_hit: bool) -> fn (i32, i32, Hit) -> () 
 // CPU BVH4 variants ---------------------------------------------------------------
 
 extern fn cpu_intersect_hybrid_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_hybrid {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -172,7 +172,7 @@ extern fn cpu_intersect_hybrid_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_hybrid_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_hybrid {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -187,7 +187,7 @@ extern fn cpu_occluded_hybrid_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ray
 }
 
 extern fn cpu_intersect_packet_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_packet {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -202,7 +202,7 @@ extern fn cpu_intersect_packet_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_packet_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_packet {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -217,7 +217,7 @@ extern fn cpu_occluded_packet_ray4_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ray
 }
 
 extern fn cpu_intersect_hybrid_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray8 && enable_cpu_hybrid {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -232,7 +232,7 @@ extern fn cpu_intersect_hybrid_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_hybrid_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray8 && enable_cpu_hybrid {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -247,7 +247,7 @@ extern fn cpu_occluded_hybrid_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ray
 }
 
 extern fn cpu_intersect_packet_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray8 && enable_cpu_packet {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -262,7 +262,7 @@ extern fn cpu_intersect_packet_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_packet_ray8_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray8 && enable_cpu_packet {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh4_tri4(nodes, tris),
@@ -307,7 +307,7 @@ extern fn cpu_occluded_single_ray1_bvh4_tri4(nodes: &[Node4], tris: &[Tri4], ray
 // CPU BVH8 variants ---------------------------------------------------------------
 
 extern fn cpu_intersect_hybrid_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_hybrid {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -322,7 +322,7 @@ extern fn cpu_intersect_hybrid_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_hybrid_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_hybrid {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -337,7 +337,7 @@ extern fn cpu_occluded_hybrid_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ray
 }
 
 extern fn cpu_intersect_packet_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_packet {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -352,7 +352,7 @@ extern fn cpu_intersect_packet_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_packet_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray4], hits: &mut [Hit4], num_packets: i32) -> () {
-    if enable_cpu_bvh4_tri4 && enable_cpu_ray4 && enable_cpu_packet {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -367,7 +367,7 @@ extern fn cpu_occluded_packet_ray4_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ray
 }
 
 extern fn cpu_intersect_hybrid_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh8_tri4 && enable_cpu_ray8 && enable_cpu_hybrid {
+     if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -382,7 +382,7 @@ extern fn cpu_intersect_hybrid_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_hybrid_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh8_tri4 && enable_cpu_ray8 && enable_cpu_hybrid {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -397,7 +397,7 @@ extern fn cpu_occluded_hybrid_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ray
 }
 
 extern fn cpu_intersect_packet_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh8_tri4 && enable_cpu_ray8 && enable_cpu_packet {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
@@ -412,7 +412,7 @@ extern fn cpu_intersect_packet_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], ra
 }
 
 extern fn cpu_occluded_packet_ray8_bvh8_tri4(nodes: &[Node8], tris: &[Tri4], rays: &[Ray8], hits: &mut [Hit8], num_packets: i32) -> () {
-    if enable_cpu_bvh8_tri4 && enable_cpu_ray8 && enable_cpu_packet {
+    if false {
         cpu_traverse_hybrid(
             if enable_cpu_int_min_max { make_cpu_int_min_max() } else { make_default_min_max() },
             make_cpu_bvh8_tri4(nodes, tris),
