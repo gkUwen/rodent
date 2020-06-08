@@ -162,7 +162,7 @@ fn @cpu_traverse_single_helper( mut ray: Ray
 
     // Traversal loop
     //for i in vectorize(bvh.arity) {
-    for i in range(0,bvh.arity)
+    for i in range(0,bvh.arity){
         while true {
             let restart = continue;
             let exit    = break;
