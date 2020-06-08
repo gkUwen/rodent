@@ -296,7 +296,7 @@ fn @cpu_shade(geom_id: i32, primary: &PrimaryStream, secondary: &SecondaryStream
                 })
             }
 
-            for lane in unroll(0, vector_width) {
+           /* for lane in unroll(0, vector_width) {
                 let j = bitcast[i32](rv_extract(bitcast[f32](ray_id), lane));
                 accumulate(j,
                     make_color(
@@ -305,7 +305,8 @@ fn @cpu_shade(geom_id: i32, primary: &PrimaryStream, secondary: &SecondaryStream
                         rv_extract(hit_color.b, lane)
                     )
                 );
-            }
+            }*/
+            accumulate(ray_id,make_color(hit_color.r,hit_color.g,hit_color.b));
 
             // Compute shadow rays
             for once() {

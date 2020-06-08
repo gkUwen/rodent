@@ -149,7 +149,112 @@ fn @cpu_traverse_single_helper( mut ray: Ray
     let branchless = bvh.arity > 4;
 
     let mut hit = empty_hit(ray.tmax);
+    let stack = alloc_stack();
 
+    stack.push(root, ray.tmin);
+
+   /* let extract_hit = @ |hit, lane| Hit {
+        geom_id:    bitcast[i32](rv_extract(bitcast[f32](hit.geom_id), lane)),
+        prim_id:    bitcast[i32](rv_extract(bitcast[f32](hit.prim_id), lane)),
+        distance:   rv_extract(hit.distance, lane),
+        uv_coords:  make_vec2(rv_extract(hit.uv_coords.x, lane), rv_extract(hit.uv_coords.y, lane))
+    };*/
+
+    // Traversal loop
+    //for i in vectorize(bvh.arity) {
+    for i in range(0,bvh.arity){
+        while true {
+            let restart = continue;
+            let exit    = break;
+
+            if unlikely(stack.is_empty()) { exit() }
+            // Cull nodes that cannot be intersected by the ray
+            if !any_hit && unlikely(stack.top().tmin > ray.tmax) {
+                stack.pop();
+                restart()
+            }
+
+            // Intersect inner nodes
+            while likely(is_inner(stack.top())) {
+                let node = bvh.node(stack.pop().node - 1);
+
+                // Intersect children
+                let (tentry, texit) = intersect_ray_box(min_max, true /*ordered*/, ray, node.ordered_bbox(i, octant));
+                //let mask = if min_max.is_integer {
+                    // Special case when integer comparisons are faster than floating point comparisons
+                //    !rv_ballot(bitcast[i32](texit) < bitcast[i32](tentry)) & ((1 << bvh.arity) - 1)
+              //  } else {
+               //     rv_ballot(tentry <= texit)
+              //  };
+                // Restart the loop when no intersection is found to trigger culling
+               // if likely(mask == 0) {
+                  //  if any_hit { continue() } else { restart() }
+               // }
+
+                // Push intersected nodes on the stack, prefetch those
+                // that are closer than the node currently on top of the stack
+                let mut num_intrs = 0;
+                //for lane in cpu_one_bits(i) {  //mask replace by i
+                    let lane = i;
+                    let child_id = node.child(lane);
+
+                    num_intrs++;
+
+                   // let t = rv_extract(tentry, lane);
+                    let t = tentry; 
+                    if any_hit || t < stack.top().tmin {
+                        if !any_hit { bvh.prefetch(child_id); }
+                        stack.push(child_id, t);
+                    } else {
+                        stack.push_after(child_id, t);
+                    }
+                //}
+
+                if !any_hit && num_intrs >= 3 {
+                    // Sort them by distance along the ray
+                    for k in unroll(3, bvh.arity + 1) {
+                        if k == bvh.arity || num_intrs == k {
+                            stack.sort_n(k, @ |a, b| a < b, sorting_network, branchless);
+                            break()
+                        }
+                    }
+                }
+            }
+
+            if any_hit && unlikely(stack.is_empty()) { exit() }
+
+            // Intersect leaves here
+            let mut prim_id = !stack.pop().node;
+            let mut terminated = false;
+            while true {
+                let prim = bvh.prim(prim_id++);
+
+                // Intersect primitives
+                for j in vectorize(prim.size) {
+                    if !prim.is_valid(j) { continue() }
+                    let prim_hit = prim.intersect(j, cpu_intrinsics, ray, continue);
+                    if any_hit {
+                        // Early exit mode
+                        //let lane = i;//cpu_ctz32(rv_ballot(true), true);
+                        hit = prim_hit;//extract_hit(prim_hit, lane);
+                        terminated = true;
+                    } else {
+                        let hit_distance = prim_hit.distance;//select(rv_mask(), prim_hit.distance, flt_max);
+                        let min_distance = cpu_reduce(hit_distance, prim.size, min_max.fminf);
+                        //let lane = cpu_index_of(hit_distance, min_distance);
+                        hit = prim_hit;//extract_hit(prim_hit, lane);
+                        ray.tmax = hit.distance;
+                    }
+                }
+
+                // Sentinel test
+                if prim.is_last { break() }
+            }
+
+            // Early exit test delayed until exit primitive intersection loop
+            if any_hit && terminated { exit() }
+        }
+    }
     hit
 }
 
