@@ -283,7 +283,7 @@ fn @cpu_traverse_hybrid_helper( mut ray: Ray
 
 // Wrappers ------------------------------------------------------------------------
 
-/*fn @cpu_traverse_hybrid( min_max: MinMax
+fn @cpu_traverse_hybrid( min_max: MinMax
                        , bvh: Bvh
                        , rays: fn (i32, i32) -> Ray
                        , hits: fn (i32, i32, Hit) -> ()
@@ -297,7 +297,7 @@ fn @cpu_traverse_hybrid_helper( mut ray: Ray
             hits(i, j, cpu_traverse_hybrid_helper(rays(i, j), 1i32, min_max, bvh, false, any_hit, 1))
         }
     }
-}*/
+}
 
 fn @cpu_traverse_single( min_max: MinMax
                        , bvh: Bvh
